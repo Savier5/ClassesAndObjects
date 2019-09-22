@@ -1,45 +1,28 @@
 package edu.gcccd.csis;
 
-import org.jboss.arquillian.container.test.api.Deployment;
-import org.jboss.arquillian.junit.Arquillian;
-import org.jboss.shrinkwrap.api.ShrinkWrap;
-import org.jboss.shrinkwrap.api.asset.EmptyAsset;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 
 import static org.junit.Assert.*;
 
-@RunWith(Arquillian.class)
-public class ContainerTest {
-    @Deployment
-    public static JavaArchive createDeployment() {
-        return ShrinkWrap.create(JavaArchive.class)
-                .addClass(Container.class)
-                .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
-    }
+public class ContainerTest{
 
     @Test
-    public void main() {
+    public static void main(String[] args) {
+        Circle radiusAndColor = new Circle(0, null);
+        System.out.println("The radius of the circle is "+ radiusAndColor.getRadius() + " and color is " + radiusAndColor.getColor());
+        Rectangle widthAndHeight = new Rectangle(0, 0);
+        System.out.println("The width of the circle is " + widthAndHeight.getWidth() + " and height is " + widthAndHeight.getHeight());
     }
-
-    @Test
-    public void setRectangle() {
-    }
-
-    @Test
-    public void getRectangle() {
-    }
-
-    @Test
-    public void setCircle() {
-    }
-
-    @Test
-    public void getCircle() {
-    }
-
+    // The size() for some reason will not run if the PSVM is on.
     @Test
     public void size() {
+        String rectangle = null;
+        String circle = "Something";
+        if (rectangle == null && circle == null)
+            System.out.println("0");
+        if (rectangle != null && circle == null || rectangle == null && circle != null)
+            System.out.println("1");
+        if (rectangle != null && circle != null)
+            System.out.println("2");
     }
 }
